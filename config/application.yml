@@ -5,10 +5,6 @@ controller:
   api-attendance-employee: employee
   api-attendance-employee-id: employee/{id}
 
-#Valid headers apis
-headers:
-  id-user: x-id-usuario
-
 #Swagger Config
 spring:
   mvc:
