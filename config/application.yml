@@ -3,7 +3,7 @@ controller:
   base-path: api/attendance/
   api-attendance-employees: employees
   api-attendance-employee: employee
-  api-attendance-employee-Id: employee/{employeeId}
+  api-attendance-employee-id: employee/{id}
 
 #Valid headers apis
 headers:

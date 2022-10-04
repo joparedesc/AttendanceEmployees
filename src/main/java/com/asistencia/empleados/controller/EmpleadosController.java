@@ -39,12 +39,40 @@ public class EmpleadosController {
     }
 
     @PostMapping
-        (
-                path = "${controller.api-attendance-employee}"
-        )
+    (
+            path = "${controller.api-attendance-employee}"
+    )
     public ResponseEntity<?> save(@RequestBody Employee employee){
         employeeService.saveProcedure(employee);
         return new ResponseEntity("employee save", HttpStatus.CREATED);
+
+    }
+
+    @GetMapping
+            (path = "${controller.api-attendance-employee-id}")
+    public ResponseEntity<AttendanceEmployeeResponse> getEmployeeById(@PathVariable int id){
+        AttendanceEmployeeResponse attendanceEmployeeResponse=employeeService.getEmployeeById(id);
+        return new ResponseEntity<AttendanceEmployeeResponse>(attendanceEmployeeResponse, HttpStatus.OK);
+
+    }
+
+    @DeleteMapping
+            (path = "${controller.api-attendance-employee-id}")
+    public ResponseEntity<?> deleteEmployee( @PathVariable(required = true) int id) {
+        boolean response = employeeService.deleteEmployee(id);
+        if(response){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
+    @PutMapping
+            (path = "${controller.api-attendance-employee-id}")
+    public ResponseEntity<Employee> updateEmployeeById(@PathVariable int id,@RequestBody Employee employee){
+        Employee updateEmployee=employeeService.updateEmployee(id,employee);
+        return new ResponseEntity<Employee>(updateEmployee, HttpStatus.OK);
 
     }
 

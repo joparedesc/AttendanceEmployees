@@ -9,20 +9,26 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
+
     @Query(value = "{call Employees_procedure()}", nativeQuery = true)
-    List<Employee> listEmployeesProcedure();
+    List<Employee> getEmployeesProcedure();
 
     @Modifying
     @Transactional
     @Query(value = "{call save_employee_procedure(:nameIn, :lastNameIn, :ageIn, :credentialIn)}", nativeQuery = true)
-    void saveProcedure(
+    void saveEmployeeProcedure(
             @Param("nameIn")String nameIn,
             @Param("lastNameIn")String lastNameIn,
             @Param("ageIn")int ageIn,
             @Param("credentialIn")String credentialIn
     );
+
+    void deleteById(int id);
+
+    Optional<Employee> findById(Integer integer);
 
 }

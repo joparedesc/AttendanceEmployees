@@ -9,4 +9,10 @@ public interface EmployeeService {
     List<AttendanceEmployeeResponse> getAttendanceEmployees();
 
     void saveProcedure(Employee employee);
+
+    boolean deleteEmployee(int id);
+
+    AttendanceEmployeeResponse getEmployeeById(int id);
+
+    Employee updateEmployee(int id,Employee employee);
 }
